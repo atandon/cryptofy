@@ -34,15 +34,11 @@
         numberArray.push(i);
       }
 
-        var orig_str_array = orig_str.split(' ');
-        console.log(orig_str_array);
+      var orig_str_array  = orig_str.split(' ');
+      var shuffled_string = '';
 
-        var shuffled_string = '';
-
-      for(var j=0;j<orig_str_array.length;j++) {
+      for(var j=0;j<orig_str_array.length;j++)
         shuffled_string += shuffleStr(orig_str_array[j])+' ';
-        console.log(shuffled_string);
-      }
       $(this).html(shuffled_string);
 
       numberArray     = shuffle(numberArray);
