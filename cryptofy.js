@@ -16,13 +16,34 @@
         return o;
       };
 
+      function shuffleStr(o) {
+        var a = o.split("");
+            n = a.length;
+
+        for(var i = n - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = a[i];
+            a[i] = a[j];
+            a[j] = tmp;
+        }
+        return a.join("");
+      };
 
       var numberArray = [];
       for(var i=0;i < orig_str.length;i++) {
         numberArray.push(i);
-        var shuffled_string = shuffle(orig_str.split(''));
-        $(this).html(shuffled_string);
       }
+
+        var orig_str_array = orig_str.split(' ');
+        console.log(orig_str_array);
+
+        var shuffled_string = '';
+
+      for(var j=0;j<orig_str_array.length;j++) {
+        shuffled_string += shuffleStr(orig_str_array[j])+' ';
+        console.log(shuffled_string);
+      }
+      $(this).html(shuffled_string);
 
       numberArray     = shuffle(numberArray);
       var str         = $(self).html().toString();
@@ -37,10 +58,10 @@
           str = replaceAt(str,numberArray[countdown],orig_str[numberArray[countdown]]);
           countdown--;
           if(countdown == -1) clearInterval(loop);
-        } else if(isLetter) {
+        } else if(isLetter && str[pos] != ' ') {
           var replace_pos = Math.floor((Math.random()*letters.length));
           str = replaceAt(str,pos,letters.charAt(replace_pos));
-        } else {
+        } else if(str[pos] != ' ') {
           var replace_pos = Math.floor((Math.random()*numbers.length));
           str = replaceAt(str,pos,numbers.charAt(replace_pos));
         }
